@@ -3,6 +3,7 @@ package MarcoShvy.com.encryptapi.services;
 import MarcoShvy.com.encryptapi.domain.operation.Operation;
 import MarcoShvy.com.encryptapi.domain.operation.exceptions.OperationNotFoundException;
 import MarcoShvy.com.encryptapi.dto.OperationDTO;
+import MarcoShvy.com.encryptapi.dto.OperationResponseDTO;
 import MarcoShvy.com.encryptapi.repositories.OperationRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,14 +35,14 @@ public class OperationService {
         return operation;
     }
 
-    public OperationDTO read(Long id) throws OperationNotFoundException {
+    public OperationResponseDTO read(Long id) throws OperationNotFoundException {
         Operation operation = this.repository.findById(id).orElseThrow(() -> new OperationNotFoundException(id));
 
         String userDocumentHashed = this.encryptService.decryptData(operation.getUserDocument());
         String creditCardHashed = this.encryptService.decryptData(operation.getCreditCardToken());
 
 
-        OperationDTO dto = new OperationDTO(userDocumentHashed, creditCardHashed, operation.getValue());
+        OperationResponseDTO dto = new OperationResponseDTO(operation.getId(), userDocumentHashed, creditCardHashed, operation.getValue());
 
         return dto;
     }

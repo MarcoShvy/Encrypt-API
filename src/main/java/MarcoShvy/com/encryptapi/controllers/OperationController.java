@@ -2,6 +2,7 @@ package MarcoShvy.com.encryptapi.controllers;
 
 import MarcoShvy.com.encryptapi.domain.operation.Operation;
 import MarcoShvy.com.encryptapi.dto.OperationDTO;
+import MarcoShvy.com.encryptapi.dto.OperationResponseDTO;
 import MarcoShvy.com.encryptapi.services.OperationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,10 @@ public class OperationController {
         return ResponseEntity.created(uri).body(newOperation);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
+    public ResponseEntity<OperationResponseDTO> read(@PathVariable String id){
+        OperationResponseDTO operation = this.operationService.read(Long.parseLong(id));
+
+        return ResponseEntity.ok(operation);
+    }
 }
