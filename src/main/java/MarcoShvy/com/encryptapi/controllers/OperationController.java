@@ -32,9 +32,16 @@ public class OperationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OperationResponseDTO> read(@PathVariable String id){
-        OperationResponseDTO operation = this.operationService.read(Long.parseLong(id));
+    public ResponseEntity<OperationResponseDTO> read(@PathVariable Long id){
+        OperationResponseDTO operation = this.operationService.read(id);
 
         return ResponseEntity.ok(operation);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.operationService.delete(id);
+
+        return ResponseEntity.ok().build();
     }
 }

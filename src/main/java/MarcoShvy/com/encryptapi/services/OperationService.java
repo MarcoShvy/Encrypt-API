@@ -46,4 +46,10 @@ public class OperationService {
 
         return dto;
     }
+
+    public void delete(Long id) throws OperationNotFoundException {
+        Operation operation = this.repository.findById(id).orElseThrow(() -> new OperationNotFoundException(id));
+
+        repository.delete(operation);
+    }
 }
