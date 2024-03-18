@@ -44,4 +44,11 @@ public class OperationController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Operation> update(@RequestBody OperationDTO operationDTO, @PathVariable Long id){
+        Operation updateOperation = this.operationService.update(operationDTO, id);
+
+        return ResponseEntity.ok(updateOperation);
+    }
 }
