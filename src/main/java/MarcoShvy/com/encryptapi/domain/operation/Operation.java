@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Operation {
 
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
