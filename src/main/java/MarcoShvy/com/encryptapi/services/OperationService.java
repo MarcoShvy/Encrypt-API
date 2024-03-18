@@ -3,7 +3,9 @@ package MarcoShvy.com.encryptapi.services;
 import MarcoShvy.com.encryptapi.domain.operation.Operation;
 import MarcoShvy.com.encryptapi.dto.OperationDTO;
 import MarcoShvy.com.encryptapi.repositories.OperationRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OperationService {
 
     private OperationRepository repository;
